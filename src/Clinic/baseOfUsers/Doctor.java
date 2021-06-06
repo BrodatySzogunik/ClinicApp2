@@ -29,3 +29,4 @@ public class Doctor extends User{
         return this.spec;
     }
 }
+//JD
