@@ -11,10 +11,6 @@ public class Doctor extends User{
     public Doctor(String firstName,String lastName,int phoneNumber,String login,String password,Spec spec) {
         super(firstName,lastName,phoneNumber,login,password);
         this.spec = spec;
-
-
-
-
 //        System.out.println("Wybierz specjalizację \n1-Kardiolog\n2-Okulista\n3-Laryngolog\n4-Pediatra\n5-Ogólny\n6-Ortopeda\n7-Dermatolog");
 //        switch (in.nextInt()){
 //            case 1 -> spec = Spec.HEART;
@@ -26,6 +22,11 @@ public class Doctor extends User{
 //            case 7 -> spec = Spec.SKIN;
 //        }
 
+    }
+
+    @Override
+    public Spec getSpec(){
+        return this.spec;
     }
 }
 //JD

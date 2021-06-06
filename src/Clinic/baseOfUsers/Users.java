@@ -28,6 +28,9 @@ public class Users {
         if(!users.get(userType).isEmpty())return users.get(userType);
         else return null;
     }
+
+
+
     public static User returnUser(ArrayList<User> users,int phoneNumber,String firstName,String lastName){
         for(User user:users){
             if(user.phoneNumber==phoneNumber && user.firstName.equals(firstName) && user.lastName.equals(lastName)){
