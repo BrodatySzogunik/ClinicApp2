@@ -1,6 +1,9 @@
 package Clinic;
 
+import Clinic.baseOfUsers.Doctor;
 import Clinic.baseOfUsers.Spec;
+import Clinic.baseOfUsers.User;
+import Clinic.baseOfUsers.Users;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,8 +29,12 @@ public class VisitFrame extends JFrame implements ActionListener {
         cChoseSpecialist.setBounds(20,20,120,20);
         cChoseSpecialist.addActionListener(this);
         add(cChoseSpecialist);
-        
+
         cChoseVisit = new JComboBox();
+        cChoseVisit.setBounds(20,40,120,20);
+        cChoseVisit.addActionListener(this);
+
+
     }
 
 
@@ -36,6 +43,17 @@ public class VisitFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+       Object source = e.getSource();
+       if(source == cChoseSpecialist){
+           add(cChoseVisit);
+           for(User doctor: Users.returnUsers("Doctors")){
+               if(((Doctor)doctor).spec==cChoseSpecialist.getSelectedItem()){
+                   for()
+                   cChoseVisit.add()
+
+               }
+           }
+       }
 
     }
 }
