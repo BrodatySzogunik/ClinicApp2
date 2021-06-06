@@ -7,10 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PatientFrame extends JFrame implements ActionListener {
-
+    User user;
     JButton bAddVisit,bShowVisits,bChangePassword;
     public PatientFrame(User user){
-
+        this.user = user;
         setSize(500,500);
         setTitle("Zalogowany jako pacjent: "+user.firstName+" "+user.lastName);
         setLayout(null);
@@ -42,8 +42,9 @@ public class PatientFrame extends JFrame implements ActionListener {
             VisitFrame visitFrame = new VisitFrame("addVisit");
             visitFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             visitFrame.setVisible(true);
-
-
+        }
+        if(source == bChangePassword){
+            ChangePasswordFrame changePasswordFrame = new ChangePasswordFrame(user);
         }
 
 

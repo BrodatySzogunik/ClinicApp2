@@ -48,8 +48,8 @@ public class VisitFrame extends JFrame implements ActionListener {
            add(cChoseVisit);
            for(User doctor: Users.returnUsers("Doctors")){
                if(((Doctor)doctor).spec==cChoseSpecialist.getSelectedItem()){
-                   for()
-                   cChoseVisit.add()
+//                   for()
+//                   cChoseVisit.add()
 
                }
            }
