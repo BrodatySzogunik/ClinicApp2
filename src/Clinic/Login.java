@@ -4,25 +4,25 @@ import Clinic.baseOfUsers.User;
 import Clinic.baseOfUsers.Users;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import static Clinic.UserInterface.*;
+//import java.util.Scanner;
+//
+//import static Clinic.UserInterface.*;
 
 public class Login {
-    //static private boolean;
-    static String login,password,loggedUser;
-
-    static Scanner userInput = new Scanner(System.in);
-
-
-    public static void Login(User user){
-        switch (loggedUser){
-            case "Patient" -> showUserInterface();
-            case "Doctor" -> showDoctorInterface();
-            case "Admin" -> showAdminInterface();
-            case "Receptionist" -> showReceptionistInterface();
-        }
-    }
+//    //static private boolean;
+//    static String login,password,loggedUser;
+//
+//    static Scanner userInput = new Scanner(System.in);
+////
+//
+//    public static void Login(User user){
+//        switch (loggedUser){
+//            case "Patient" -> showUserInterface();
+//            case "Doctor" -> showDoctorInterface();
+//            case "Admin" -> showAdminInterface();
+//            case "Receptionist" -> showReceptionistInterface();
+//        }
+//    }
 
 
 

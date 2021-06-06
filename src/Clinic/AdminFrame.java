@@ -49,6 +49,8 @@ public class AdminFrame extends JFrame implements ActionListener {
             RemoveUserFrame removeUserFrame = new RemoveUserFrame();
             removeUserFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             removeUserFrame.setVisible(true);
+        }else if(source == bModifyData){
+
         }
 
     }

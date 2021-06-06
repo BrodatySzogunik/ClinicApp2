@@ -37,7 +37,14 @@ public class PatientFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //bChangePassword = funkcja zmiany hasła przyjmująca Obiekt User jako argument
+        Object source = e.getSource();
+        if(source == bAddVisit){
+            VisitFrame visitFrame = new VisitFrame("addVisit");
+            visitFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            visitFrame.setVisible(true);
+
+
+        }
 
 
     }
