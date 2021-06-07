@@ -1,4 +1,4 @@
-package Clinic.prescription;
+package Clinic.baseOfPrescription;
 
 public class Medicine {
     private final Payment payment;

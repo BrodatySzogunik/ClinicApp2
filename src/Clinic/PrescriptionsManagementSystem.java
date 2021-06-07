@@ -3,8 +3,13 @@ package Clinic;
 import java.io.*;
 
 public class PrescriptionsManagementSystem {
-    public static int newestKey;
+    public static int newestKey=-1;
 
+
+    public static void createNewPrescription()
+    {
+
+    }
 
     static int loadNewestKeyFromFile()
     {

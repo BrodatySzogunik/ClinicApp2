@@ -1,4 +1,4 @@
-package Clinic.prescription;
+package Clinic.baseOfPrescription;
 
 import java.util.Arrays;
 import java.util.List;

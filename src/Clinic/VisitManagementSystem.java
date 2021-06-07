@@ -7,10 +7,11 @@ import java.io.*;
 import java.util.Date;
 
 public class VisitManagementSystem {
-    private static int newestKey;
+    private static int newestKey=-1;
 
     public static void setAppointment(User patient,Doctor doctor, Date date)
     {
+
         Visits.addVisit(updateNewestKey(), patient, date, doctor.spec, doctor,0,0);
     }
 
