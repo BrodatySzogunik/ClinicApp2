@@ -1,4 +1,4 @@
-package Clinic;
+package Clinic.Frames;
 
 import Clinic.baseOfUsers.User;
 import Clinic.baseOfUsers.Users;
