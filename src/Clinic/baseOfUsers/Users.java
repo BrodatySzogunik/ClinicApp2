@@ -169,6 +169,7 @@ public class Users {
                         spec=new char[tmp=inputStream.readInt()];
                         for(int i=0;i<tmp;i++)spec[i]=inputStream.readChar();
                         size=inputStream.readInt();
+                        schedule=new Schedule();
                         for(int i=0;i<size&&inputStream.readChar()=='S';i++) {
                             tmp = inputStream.readInt();
                             date1=new char[tmp];
