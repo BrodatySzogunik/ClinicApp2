@@ -3,6 +3,7 @@ package Clinic.Frames;
 import Clinic.baseOfUsers.User;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,6 +40,7 @@ public class PatientFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if(source == bAddVisit){
+            ((JButton)source).setForeground(Color.RED);
             VisitFrame visitFrame = new VisitFrame("addVisit");
             visitFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             visitFrame.setVisible(true);

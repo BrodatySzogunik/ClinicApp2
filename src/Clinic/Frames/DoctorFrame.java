@@ -10,9 +10,10 @@ import java.awt.event.ActionListener;
 public class DoctorFrame extends JFrame implements ActionListener {
 
     JButton bShowMyVisits, bSetSchedule,bAddNewReferral,bAddNewPrescription;
-
+    User doctor1;
 
     public DoctorFrame(User doctor){
+        this.doctor1 = doctor;
 
 
         setSize(500,500);
@@ -46,6 +47,12 @@ public class DoctorFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        if(source == bSetSchedule){
+            SetScheduleFrame setScheduleFrame = new SetScheduleFrame(doctor1);
+            setScheduleFrame.setVisible(true);
+
+        }
 
     }
 }

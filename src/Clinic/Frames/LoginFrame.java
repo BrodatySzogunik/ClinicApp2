@@ -1,8 +1,8 @@
 package Clinic.Frames;
 
 import Clinic.Login;
-import Clinic.baseOfUsers.User;
-import Clinic.baseOfUsers.Users;
+import Clinic.baseOfUsers.*;
+
 
 import javax.swing.*;
 import java.awt.*;
