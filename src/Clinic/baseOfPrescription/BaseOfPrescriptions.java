@@ -1,6 +1,7 @@
 package Clinic.baseOfPrescription;
 
 import java.io.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -85,12 +86,15 @@ public class BaseOfPrescriptions {
 
     public static void loadPrescriptionsFromFile()
     {
-        int size1,size2,strSize,key,visibility;
+        int size1,size2,strSize,key,visibility,patient;
         char[] medicineName;
         char[] payment;
+        char[] date1;
         Payment payment1;
         double price;
+        Date date=null;
         ArrayList<Medicine> medicines;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH/mm");
 
         String path = "users.txt";
         DataInputStream inputStream= null;
@@ -124,7 +128,19 @@ public class BaseOfPrescriptions {
                     strSize=inputStream.readInt();
                     payment=new char[strSize];
                     for(int x=0;i<strSize;x++)payment[x]=inputStream.readChar();
+                    payment1=Payment.valueOf(new String(payment));
 
+                    strSize=inputStream.readInt();
+                    date1=new char[strSize];
+                    for(int x=0;i<strSize;x++)date1[x]=inputStream.readChar();
+                    try{
+                        date=sdf.parse(new String(date1));
+                    }catch(ParseException e){
+                        e.printStackTrace();
+                    }
+
+                    patient=inputStream.readInt();
+                    newPrescription(key,medicines,payment1,date,patient,visibility,"");
                 }
             }catch(IOException e){
                 e.printStackTrace();
