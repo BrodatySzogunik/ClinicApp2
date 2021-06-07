@@ -2,22 +2,40 @@ package Clinic;
 
 import Clinic.baseOfPrescription.Medicine;
 import Clinic.baseOfPrescription.Payment;
+import Clinic.baseOfPrescription.Prescription;
 import Clinic.baseOfUsers.User;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static Clinic.baseOfPrescription.BaseOfPrescriptions.newPrescription;
+import static Clinic.baseOfPrescription.BaseOfPrescriptions.returnPrescription;
 
 public class PrescriptionsManagementSystem {
-    public static int newestKey=-1;
+    static int newestKey=-1;
 
+    public static int createEmptyPrescription()
+    {
+        ArrayList<Medicine> medicines=null;
+        Payment payment=null;
+        Date date=null;
+        newPrescription(updateNewestKey(), medicines,payment,date,0,0,"");
+        return newestKey;
+    }
 
-    public static void createNewPrescription(List<Medicine> medicines, Payment payment, Date date, User patient)
+    public static int createNewPrescription(ArrayList<Medicine> medicines, Payment payment, Date date, User patient)
     {
         int patientId=patient.phoneNumber;
-        newPrescription(updateNewestKey(), medicines, payment, date, patientId,"");
+        newPrescription(updateNewestKey(), medicines, payment, date, patientId,1,"");
+        return newestKey;
+    }
+
+    public static void editPrescription(int key)
+    {
+        Prescription prescription=returnPrescription(key);
+
     }
 
     static int loadNewestKeyFromFile()

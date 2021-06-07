@@ -10,8 +10,17 @@ public class BaseOfPrescriptions {
         prescriptions.remove(key);
     }
 
-    public static void newPrescription(int key,List<Medicine> medicines, Payment payment,Date date, int patientId, String recommendation){
-        prescriptions.put(key,new Prescription(medicines,payment,date,patientId));
+    public static void newPrescription(int key,ArrayList<Medicine> medicines, Payment payment,Date date, int patientId, int visibility,String recommendation){
+        prescriptions.put(key,new Prescription(medicines,payment,date,patientId,visibility));
     }
 
+    public static Prescription returnPrescription(int key)
+    {
+        return prescriptions.get(key);
+    }
+
+    public static void putPrescritpion(int key,Prescription prescription)
+    {
+        prescriptions.put(key,prescription);
+    }
 }

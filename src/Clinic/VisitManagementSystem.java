@@ -11,8 +11,9 @@ public class VisitManagementSystem {
 
     public static void setAppointment(User patient,Doctor doctor, Date date)
     {
-
-        Visits.addVisit(updateNewestKey(), patient, date, doctor.spec, doctor,0,0);
+        int prescriptionNumber = PrescriptionsManagementSystem.createEmptyPrescription();
+        int recommendationsNumber=0;
+        Visits.addVisit(updateNewestKey(), patient, date, doctor.spec, doctor,prescriptionNumber,recommendationsNumber);
     }
 
     static void loadNewestKeyFromFile()
