@@ -78,6 +78,7 @@ public class Recommendations {
             try{
                 outputStream=new DataOutputStream(new FileOutputStream(path));
             }catch (FileNotFoundException e){
+                System.out.println("nie znaleziono pliku z zaleceniami");
                 e.printStackTrace();
                 return;
             }
