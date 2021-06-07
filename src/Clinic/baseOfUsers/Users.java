@@ -1,6 +1,8 @@
 package Clinic.baseOfUsers;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Users {
@@ -111,12 +113,16 @@ public class Users {
     {
         char[] firstName;
         char[] lastName;
-        int phone,tmp;
+        int phone,tmp,size,val;
         char[] login;
         char[] password;
         char[] spec;
         String path = "users.txt";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH/mm");
+        Date date=null;
+        char[] date1;
         DataInputStream inputStream= null;
+        Schedule schedule=new Schedule();
         try{
             try {
                 inputStream = new DataInputStream(new FileInputStream(path));
@@ -162,7 +168,22 @@ public class Users {
                         for(int i=0;i<tmp;i++)password[i]=inputStream.readChar();
                         spec=new char[tmp=inputStream.readInt()];
                         for(int i=0;i<tmp;i++)spec[i]=inputStream.readChar();
+                        size=inputStream.readInt();
+                        for(int i=0;i<size&&inputStream.readChar()=='S';i++) {
+                            tmp = inputStream.readInt();
+                            date1=new char[tmp];
+                            for (int x = 0; x < tmp; x++)date1[x]=inputStream.readChar();
+                            try {
+                                date = sdf.parse(new String(date1));
+                            }catch(ParseException e)
+                            {
+                                e.printStackTrace();
+                            }
+                            val=inputStream.readInt();
+                            schedule.schedule.put(date,val);
+                        }
                         doctors.add(new Doctor(new String(firstName), new String(lastName), phone, new String(login), new String(password),Spec.valueOf(new String(spec))));
+
                     }
                 }
                 if(inputStream.readChar()=='Y')
@@ -228,7 +249,8 @@ public class Users {
 
     public static void saveListOfUsersToFile()
     {
-        String path = "users.txt";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH/mm");
+        String path = "users.txt",tmpDateStr;
         DataOutputStream outputStream= null;
         try {
             try {
@@ -285,6 +307,16 @@ public class Users {
                         outputStream.writeChars(user.password);
                         outputStream.writeInt(user.spec.name().length());
                         outputStream.writeChars(user.spec.name());
+
+                        outputStream.writeInt(user.schedule.schedule.size());
+                        for(Map.Entry<Date, Integer> entry:user.schedule.schedule.entrySet())
+                        {
+                            outputStream.writeChar('S');
+                            tmpDateStr=sdf.format(entry.getKey());
+                            outputStream.writeInt(tmpDateStr.length());
+                            outputStream.writeChars(tmpDateStr);
+                            outputStream.writeInt(entry.getValue());
+                        }
                     }
                 }
                 catch (IOException e)
