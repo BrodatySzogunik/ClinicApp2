@@ -9,10 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Visits {
-    Map<Integer, Visit> visits= new HashMap<>();
+    static Map<Integer, Visit> visits= new HashMap<>();
 
 
-    public void addVisit(int key, User patient, Date date, Spec typeOfVisit, Doctor doctor, int prescriptionNumber, int recommendationsNumber)
+    public static void addVisit(int key, User patient, Date date, Spec typeOfVisit, Doctor doctor, int prescriptionNumber, int recommendationsNumber)
     {
         if(visits.containsKey(key))return;
         visits.put(key, new Visit(patient,date,typeOfVisit,doctor,prescriptionNumber,recommendationsNumber,key));
@@ -23,7 +23,7 @@ public class Visits {
 //
 //    }
 
-    public void removeVisit(int key)
+    public static void removeVisit(int key)
     {
         if(!visits.containsKey(key))return;
         visits.remove(key);

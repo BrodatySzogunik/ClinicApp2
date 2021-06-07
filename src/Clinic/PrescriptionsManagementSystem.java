@@ -1,23 +1,15 @@
 package Clinic;
 
-import Clinic.baseOfUsers.*;
-import Clinic.baseOfVisits.Visits;
-
 import java.io.*;
-import java.util.Date;
 
-public class VisitManagementSystem {
-    private static int newestKey;
+public class PrescriptionsManagementSystem {
+    public static int newestKey;
 
-    public static void setAppointment(User patient,Doctor doctor, Date date)
-    {
-        Visits.addVisit(updateNewestKey(), patient, date, doctor.spec, doctor,0,0);
-    }
 
-    static void loadNewestKeyFromFile()
+    static int loadNewestKeyFromFile()
     {
         int key=-1;
-        String path = "newestVisitsKey.txt";
+        String path = "newestPrescriptionsKey.txt";
         DataInputStream inputStream=null;
         try
         {
@@ -25,8 +17,8 @@ public class VisitManagementSystem {
                 inputStream = new DataInputStream(new FileInputStream(path));
             }catch (FileNotFoundException e)
             {
-                System.out.println("nie znaleziono pliku z kluczem wizyt");
-                return;
+                System.out.println("nie znaleziono pliku z kluczem recept");
+                return -1;
             }
             try {
                 key=inputStream.readInt();
@@ -46,11 +38,12 @@ public class VisitManagementSystem {
             }
         }
         if(key!=-1)newestKey=key;
+        return -2;
     }
     static int loadNewestKeyFromFile(int returnKeyAndDontUpdate)
     {
         int key=-1;
-        String path = "newestVisitsKey.txt";
+        String path = "newestPrescriptionsKey.txt";
         DataInputStream inputStream=null;
         try
         {
@@ -58,7 +51,7 @@ public class VisitManagementSystem {
                 inputStream = new DataInputStream(new FileInputStream(path));
             }catch (FileNotFoundException e)
             {
-                System.out.println("nie znaleziono pliku z kluczem wizyt");
+                System.out.println("nie znaleziono pliku z kluczem recept");
                 return -1;
             }
             try {
@@ -82,7 +75,7 @@ public class VisitManagementSystem {
     }
     static void saveNewestKeyToFile()
     {
-        String path="newestVisitsKey.txt";
+        String path="newestPrescriptionsKey.txt";
         DataOutputStream outputStream=null;
         try{
             try {
@@ -90,7 +83,7 @@ public class VisitManagementSystem {
             } catch (FileNotFoundException e)
             {
                 e.printStackTrace();
-                System.out.println("nie znaleziono pliku z kluczem wizyt");
+                System.out.println("nie znaleziono pliku z kluczem recept");
                 return;
             }
             try {
@@ -108,7 +101,6 @@ public class VisitManagementSystem {
             }
         }
     }
-
     private static int updateNewestKey()
     {
         int tmpKey=loadNewestKeyFromFile(1);
