@@ -137,6 +137,7 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.add(cShowSchedule);
         this.repaint();
+
         cShowSchedule.removeAllItems();
         System.out.println((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
         try{
@@ -154,6 +155,7 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
 
 
         }
+        Users.saveListOfUsersToFile();
 
 
 
