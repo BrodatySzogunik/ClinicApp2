@@ -3,6 +3,7 @@ package Clinic.Frames;
 import Clinic.baseOfPrescription.Prescription;
 import Clinic.baseOfUsers.Doctor;
 import Clinic.baseOfUsers.User;
+import Clinic.baseOfUsers.Users;
 
 import javax.print.Doc;
 import javax.swing.*;
@@ -16,7 +17,7 @@ import java.util.Map;
 
 public class SetScheduleFrame extends JFrame implements ActionListener {
 
-    User doctor1;
+    Doctor doctor1;
 
     SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
     SimpleDateFormat sdf2 =new SimpleDateFormat("MM");
@@ -37,7 +38,7 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
         return cal.get(Calendar.DAY_OF_WEEK);
     }
 
-    public SetScheduleFrame(User doctor)  {
+    public SetScheduleFrame(Doctor doctor)  {
         doctor1=doctor;
         setSize(500,500);
         setLayout(null);
@@ -136,22 +137,24 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.add(cShowSchedule);
         this.repaint();
+        cShowSchedule.removeAllItems();
         System.out.println((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
-        /*try{
-        date= sdf1.parse((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
-        if(!((Doctor)doctor1).schedule.containsDate(date)){
-            for()
-            ((Doctor)doctor1).schedule.addDate(date);
+        try{
+        date = sdf1.parse((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
+        if(!doctor1.schedule.containsDate(date)){
+
+            doctor1.schedule.addDate(date);
         }
-            for(Map.Entry<Date, Integer>scheduleEntry:((Doctor)doctor1).schedule.returnSchedule().entrySet()){
-                cShowSchedule.addItem(scheduleEntry.getKey());
+            for(Map.Entry<Date, Integer>scheduleEntry:doctor1.schedule.returnSchedule().entrySet()){
+                cShowSchedule.addItem(sdf1.format(scheduleEntry.getKey()));
+
             }
         }catch(ParseException x){
             x.printStackTrace();
 
 
         }
-        */
+
 
 
     }

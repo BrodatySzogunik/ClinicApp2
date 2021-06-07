@@ -10,10 +10,10 @@ import java.awt.event.ActionListener;
 public class DoctorFrame extends JFrame implements ActionListener {
 
     JButton bShowMyVisits, bSetSchedule,bAddNewReferral,bAddNewPrescription;
-    User doctor1;
+    Doctor doctor1 ;
+    public DoctorFrame(Doctor doctor){
+        doctor1=doctor;
 
-    public DoctorFrame(User doctor){
-        this.doctor1 = doctor;
 
 
         setSize(500,500);
