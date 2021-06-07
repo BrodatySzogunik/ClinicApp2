@@ -13,7 +13,7 @@ public class Prescription {
     public int patientId;
 
     public Prescription(ArrayList<Medicine> medicines, Payment payment, Date date, int patientId,int visibility) {
-        this.a=visibility;
+        this.a = visibility;
         this.medicines = medicines;
         this.payment = payment;
         this.date = date;

@@ -51,7 +51,7 @@ public class Recommendations {
                     try {
                         date = sdf.parse(new String(tmpDateStr));
                     }catch(ParseException e){e.printStackTrace();}
-                    newRecommendation(key, new String(reco), date,patientId);    
+                    newRecommendation(key, new String(reco), date,patientId);
                 }
             }catch (IOException e){
                 e.printStackTrace();

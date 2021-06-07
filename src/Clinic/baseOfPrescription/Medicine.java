@@ -1,7 +1,7 @@
 package Clinic.baseOfPrescription;
 
 public class Medicine {
-    private final Payment payment;
+    Payment payment;
     String medicineName;
     double price;
 
