@@ -1,19 +1,17 @@
 package Clinic.baseOfPrescription;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class BaseOfPrescriptions {
 
-    static List <Prescription> prescriptions = new ArrayList();
+    static Map<Integer,Prescription> prescriptions = new HashMap<>();
 
-    public static void removePrescription(int prescription){
-        prescriptions.remove(prescription);
+    public static void removePrescription(int key){
+        prescriptions.remove(key);
     }
 
-    public static void newPrescription(List<Medicine> medicines, Payment payment,Date date, int patientId, String recommendation){
-        prescriptions.add(new Prescription(medicines,payment,date,patientId));
+    public static void newPrescription(int key,List<Medicine> medicines, Payment payment,Date date, int patientId, String recommendation){
+        prescriptions.put(key,new Prescription(medicines,payment,date,patientId));
     }
 
 }
