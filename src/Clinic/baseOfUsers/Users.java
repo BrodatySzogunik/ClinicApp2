@@ -182,7 +182,7 @@ public class Users {
                             val=inputStream.readInt();
                             schedule.schedule.put(date,val);
                         }
-                        doctors.add(new Doctor(new String(firstName), new String(lastName), phone, new String(login), new String(password),Spec.valueOf(new String(spec))));
+                        doctors.add(new Doctor(new String(firstName), new String(lastName), phone, new String(login), new String(password),Spec.valueOf(new String(spec)),schedule));
 
                     }
                 }
