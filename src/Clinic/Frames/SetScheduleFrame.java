@@ -123,15 +123,16 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
-        try{
+        /*try{
         date= sdf1.parse((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
-        if(){// schedule.contains(Date);
+        //if(){// schedule.contains(Date);
             
-        }
+       // }
         }catch(ParseException e ){
 
 
         }
+        */
 
 
     }

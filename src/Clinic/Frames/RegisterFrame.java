@@ -85,7 +85,7 @@ public class RegisterFrame extends JFrame implements ActionListener {
         cSpecialization = new JComboBox(Spec.values());
         cSpecialization.setBounds(140,120,120,20);
 
-        String[] userTypes= {"Admin","Pacjent","Lekarz","Recepcjonista"};
+        String[] userTypes= {"Pacjent","Admin","Lekarz","Recepcjonista"};
         cChoseUserType =new JComboBox(userTypes);
         cChoseUserType.setBounds(140,0,120,20);
         cChoseUserType.addActionListener(this);

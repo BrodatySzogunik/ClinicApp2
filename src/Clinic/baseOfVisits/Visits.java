@@ -18,6 +18,7 @@ public class Visits {
         visits.put(key, new Visit(patient,date,typeOfVisit,doctor,prescriptionNumber,recommendationsNumber,key));
     }
 
+
 //    public void editVisit(int key)
 //    {
 //
