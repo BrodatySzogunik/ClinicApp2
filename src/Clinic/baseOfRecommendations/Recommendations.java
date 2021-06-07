@@ -17,6 +17,11 @@ public class Recommendations {
         recommendations.put(key, new Recommendation(recommendation,date,patientId));
     }
 
+    public static void newEmptyRecommendation(int key, int patientId)
+    {
+        recommendations.put(key,new Recommendation("",null,patientId));
+    }
+
     public static void removeRecommendation(int key)
     {
         recommendations.remove(key);

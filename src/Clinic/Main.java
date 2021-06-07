@@ -14,10 +14,8 @@ public class Main {
         Users.loadListOfUsersFromFile();
         app.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         app.setVisible(true);
-
-
-
-
+        System.out.println(Users.listUsers(Users.users.get("Patients")));
+        Users.addAdmin("aa","aa",72813,"aa","aa");
     }
 
 

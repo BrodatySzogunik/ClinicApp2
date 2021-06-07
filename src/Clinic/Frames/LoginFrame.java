@@ -91,6 +91,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
         if(source==bLogin) {
             User user ;
+            Doctor doc;
             if (Patient.isSelected()) {
                 user = Login.checkCredentials(Users.users.get("Patients"),tLogin.getText(),tPassword.getText());
                 if (user != null) {
@@ -108,9 +109,9 @@ public class LoginFrame extends JFrame implements ActionListener {
 
             // logowanie admina, wyświetlenie panelu admina
             if (Doctor.isSelected()) {
-                user =Login.checkCredentials(Users.users.get("Doctors"),tLogin.getText(),tPassword.getText());
-                if (user != null) {
-                    DoctorFrame doctorFrame = new DoctorFrame(user);
+                doc =Login.checkCredentialsD(Users.doctors,tLogin.getText(),tPassword.getText(),true);
+                if (doc != null) {
+                    DoctorFrame doctorFrame = new DoctorFrame(doc);
                     doctorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     doctorFrame.setVisible(true);
                     this.dispose();

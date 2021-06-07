@@ -137,7 +137,7 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
         this.add(cShowSchedule);
         this.repaint();
         System.out.println((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
-        try{
+        /*try{
         date= sdf1.parse((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
         if(!((Doctor)doctor1).schedule.containsDate(date)){
             for()
@@ -151,6 +151,7 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
 
 
         }
+        */
 
 
     }

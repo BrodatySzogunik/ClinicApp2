@@ -12,7 +12,7 @@ public class VisitManagementSystem {
     public static void setAppointment(User patient,Doctor doctor, Date date)
     {
         int prescriptionNumber = PrescriptionsManagementSystem.createEmptyPrescription();
-        int recommendationsNumber=0;
+        int recommendationsNumber=RecommendationsManagementSystem.createEmptyRecommendation();
         Visits.addVisit(updateNewestKey(), patient, date, doctor.spec, doctor,prescriptionNumber,recommendationsNumber);
     }
 

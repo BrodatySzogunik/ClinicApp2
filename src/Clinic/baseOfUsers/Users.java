@@ -5,6 +5,7 @@ import java.util.*;
 
 public class Users {
     public static Map<String,ArrayList<User>> users= new HashMap<>();
+    public static ArrayList<Doctor> doctors= new ArrayList<Doctor>();
     Scanner scanner=new Scanner(System.in);
 
 
@@ -56,6 +57,12 @@ public class Users {
         return false;
     }
 
+    public static boolean removeDoctor(Doctor doc)
+    {
+        if(doctors.remove(doc))return true;
+        return false;
+    }
+
 
     public static void  listAllUsers(){
         System.out.println("Patients\n");
@@ -70,11 +77,7 @@ public class Users {
     }
 
     public static void addDoctor(String firstName, String lastName, int phoneNumber, String login, String password,Spec spec){
-        if(!(users.keySet().contains("Doctors")))
-            {
-            users.put("Doctors",new ArrayList<>());
-            }
-        users.get("Doctors").add(new Doctor(firstName,lastName,phoneNumber,login,password,spec));
+        doctors.add(new Doctor(firstName,lastName,phoneNumber,login,password,spec));
     }
 
     public static void addPatient(String firstName, String lastName, int phoneNumber, String login, String password){
@@ -111,6 +114,7 @@ public class Users {
         int phone,tmp;
         char[] login;
         char[] password;
+        char[] spec;
         String path = "users.txt";
         DataInputStream inputStream= null;
         try{
@@ -144,10 +148,6 @@ public class Users {
                 }
                 if(inputStream.readChar()=='Y')
                 {
-                    if(!users.containsKey("Doctors"))
-                    {
-                        users.put("Doctors",new ArrayList<>());
-                    }
                     while (inputStream.readChar()=='d')
                     {
                         tmp=inputStream.readInt();
@@ -160,7 +160,9 @@ public class Users {
                         for(int i=0;i<tmp;i++)login[i]=inputStream.readChar();
                         password=new char[tmp=inputStream.readInt()];
                         for(int i=0;i<tmp;i++)password[i]=inputStream.readChar();
-                        ((ArrayList)users.get("Doctors")).add(new User(new String(firstName), new String(lastName), phone, new String(login), new String(password)));
+                        spec=new char[tmp=inputStream.readInt()];
+                        for(int i=0;i<tmp;i++)spec[i]=inputStream.readChar();
+                        doctors.add(new Doctor(new String(firstName), new String(lastName), phone, new String(login), new String(password),Spec.valueOf(new String(spec))));
                     }
                 }
                 if(inputStream.readChar()=='Y')
@@ -265,12 +267,12 @@ public class Users {
                 }
                 catch (IOException e){}
             }
-            if (users.keySet().contains("Doctors"))
+            if (!doctors.isEmpty())
             {
                 try {
                     outputStream.writeChar('D');
                     outputStream.writeChar('Y');
-                    for (User user : users.get("Doctors")) {
+                    for (Doctor user : doctors) {
                         outputStream.writeChar('d');
                         outputStream.writeInt(user.firstName.length());
                         outputStream.writeChars(user.firstName);
@@ -281,6 +283,8 @@ public class Users {
                         outputStream.writeChars(user.login);
                         outputStream.writeInt(user.password.length());
                         outputStream.writeChars(user.password);
+                        outputStream.writeInt(user.spec.name().length());
+                        outputStream.writeChars(user.spec.name());
                     }
                 }
                 catch (IOException e)

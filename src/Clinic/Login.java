@@ -1,5 +1,6 @@
 package Clinic;
 
+import Clinic.baseOfUsers.Doctor;
 import Clinic.baseOfUsers.User;
 import Clinic.baseOfUsers.Users;
 
@@ -51,7 +52,7 @@ public class Login {
 
 
     public static User checkCredentials(ArrayList<User> users,String login,String password) {
-
+        //Users.loadListOfUsersFromFile();
             for (User user : users) {
                 if (login.equals(user.login)&&password.equals(user.password)) {
                     return user;
@@ -59,4 +60,15 @@ public class Login {
             }
             return null;
     }
+
+    public static Doctor checkCredentialsD(ArrayList<Doctor> doc, String login, String password,boolean a) {
+        //Users.loadListOfUsersFromFile();
+        for (Doctor user : doc) {
+            if (login.equals(user.login)&&password.equals(user.password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
 }
