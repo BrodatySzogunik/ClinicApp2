@@ -1,13 +1,24 @@
 package Clinic;
 
+import Clinic.baseOfRecommendations.Recommendation;
+import Clinic.baseOfRecommendations.Recommendations;
+
 import java.io.*;
+import java.util.Date;
 
 public class RecommendationsManagementSystem {
     static int newestKey=-1;
 
     public static int createEmptyRecommendation()
     {
-        return 1;
+        Recommendations.newRecommendation(updateNewestKey(),"",null,-1);
+        return newestKey;
+    }
+
+    public static int createRecommendation(String reco, Date date, int patientId)
+    {
+        Recommendations.newRecommendation(updateNewestKey(), reco,date,patientId);
+        return newestKey;
     }
 
     static int loadNewestKeyFromFile()
