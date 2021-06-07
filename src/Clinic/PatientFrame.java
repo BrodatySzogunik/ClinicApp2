@@ -45,6 +45,7 @@ public class PatientFrame extends JFrame implements ActionListener {
         }
         if(source == bChangePassword){
             ChangePasswordFrame changePasswordFrame = new ChangePasswordFrame(user);
+            changePasswordFrame.setVisible(true);
         }
 
 
