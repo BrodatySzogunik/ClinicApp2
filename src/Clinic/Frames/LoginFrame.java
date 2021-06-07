@@ -1,5 +1,6 @@
-package Clinic;
+package Clinic.Frames;
 
+import Clinic.Login;
 import Clinic.baseOfUsers.User;
 import Clinic.baseOfUsers.Users;
 
@@ -91,7 +92,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         if(source==bLogin) {
             User user ;
             if (Patient.isSelected()) {
-                user =Login.checkCredentials(Users.users.get("Patients"),tLogin.getText(),tPassword.getText());
+                user = Login.checkCredentials(Users.users.get("Patients"),tLogin.getText(),tPassword.getText());
                 if (user != null) {
                     PatientFrame patientFrame = new PatientFrame(user);
                     patientFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

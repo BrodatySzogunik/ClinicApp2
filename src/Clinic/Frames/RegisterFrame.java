@@ -1,5 +1,6 @@
-package Clinic;
+package Clinic.Frames;
 
+import Clinic.Register;
 import Clinic.baseOfUsers.Spec;
 
 import javax.swing.*;
