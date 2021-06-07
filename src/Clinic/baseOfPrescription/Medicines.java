@@ -26,7 +26,8 @@ public class Medicines {
             medicines.remove(medicine);
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }
