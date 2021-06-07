@@ -124,7 +124,7 @@ public class BaseOfPrescriptions {
                     strSize=inputStream.readInt();
                     payment=new char[strSize];
                     for(int x=0;i<strSize;x++)payment[x]=inputStream.readChar();
-                    
+
                 }
             }catch(IOException e){
                 e.printStackTrace();

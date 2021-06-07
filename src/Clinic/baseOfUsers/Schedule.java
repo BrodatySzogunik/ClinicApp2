@@ -20,5 +20,10 @@ public class Schedule {
         schedule.remove(date);
     }
 
+    public int containsDate(Date date)
+    {
+        if(schedule.containsKey(date))return 1;
+        return 0;
+    }
 
 }
