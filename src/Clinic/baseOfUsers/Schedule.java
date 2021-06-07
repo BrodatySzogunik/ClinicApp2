@@ -14,16 +14,20 @@ public class Schedule {
         schedule.put(date, 0);
     }
 
+    public Map<Date,Integer> returnSchedule(){
+        return schedule;
+    }
+
     public void removeDate(Date date)
     {
         if(!schedule.containsKey(date))return;
         schedule.remove(date);
     }
 
-    public int containsDate(Date date)
+    public boolean containsDate(Date date)
     {
-        if(schedule.containsKey(date))return 1;
-        return 0;
+        if(schedule.containsKey(date))return true;
+        return false;
     }
 
 }

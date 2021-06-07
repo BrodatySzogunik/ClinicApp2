@@ -1,8 +1,10 @@
 package Clinic.Frames;
 
+import Clinic.baseOfPrescription.Prescription;
 import Clinic.baseOfUsers.Doctor;
 import Clinic.baseOfUsers.User;
 
+import javax.print.Doc;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 public class SetScheduleFrame extends JFrame implements ActionListener {
 
@@ -20,7 +23,7 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
     SimpleDateFormat sdf3 = new SimpleDateFormat("dd-MM-yyyy");
 
     JLabel lChoseDays,lChoseHours;
-    JComboBox cChoseDays,cChoseHours;
+    JComboBox cChoseDays,cChoseHours,cShowSchedule;
     JButton bAccept;
 
     Date date = new Date();
@@ -105,8 +108,17 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
         bAccept = new JButton("Dodaj");
         bAccept.setBounds(20,60,120,20);
         bAccept.addActionListener(this);
-        add(bAccept);
 
+
+
+        cShowSchedule = new JComboBox();
+        cShowSchedule.setBounds(180,20,120,20);
+
+
+
+
+
+        add(bAccept);
         add(cChoseDays);
         add(cChoseHours);
 
@@ -122,13 +134,20 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        this.add(cShowSchedule);
+        this.repaint();
         System.out.println((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
         try{
         date= sdf1.parse((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
-        if(){// schedule.contains(Date);
-            
+        if(!((Doctor)doctor1).schedule.containsDate(date)){
+            for()
+            ((Doctor)doctor1).schedule.addDate(date);
         }
-        }catch(ParseException e ){
+            for(Map.Entry<Date, Integer>scheduleEntry:((Doctor)doctor1).schedule.returnSchedule().entrySet()){
+                cShowSchedule.addItem(scheduleEntry.getKey());
+            }
+        }catch(ParseException x){
+            x.printStackTrace();
 
 
         }
