@@ -51,6 +51,7 @@ public class VisitFrame extends JFrame implements ActionListener {
        Object source = e.getSource();
        if(source == cChoseSpecialist){
            add(cChoseVisit);
+           cChoseVisit.removeAllItems();
            for(Doctor doctor: Users.doctors){
                if(doctor.spec==cChoseSpecialist.getSelectedItem()) {
                    for (Map.Entry<Date, Integer> scheduleEntry : doctor.schedule.returnSchedule().entrySet()) {
