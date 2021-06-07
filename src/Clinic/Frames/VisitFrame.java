@@ -8,11 +8,16 @@ import Clinic.baseOfUsers.Users;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
 public class VisitFrame extends JFrame implements ActionListener {
 
     JComboBox cChoseVisit,cChoseSpecialist;
+
+    SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
 
 
@@ -46,14 +51,14 @@ public class VisitFrame extends JFrame implements ActionListener {
        Object source = e.getSource();
        if(source == cChoseSpecialist){
            add(cChoseVisit);
-           for(User doctor: Users.returnUsers("Doctors")){
-               if(((Doctor)doctor).spec==cChoseSpecialist.getSelectedItem()){
-//                   for()
-//                   cChoseVisit.add()
-
+           for(Doctor doctor: Users.doctors){
+               if(doctor.spec==cChoseSpecialist.getSelectedItem()) {
+                   for (Map.Entry<Date, Integer> scheduleEntry : doctor.schedule.returnSchedule().entrySet()) {
+                       cChoseVisit.addItem(sdf1.format(scheduleEntry.getKey()));
+                   }
                }
            }
-       }
-
+        }
+       this.repaint();
     }
 }
