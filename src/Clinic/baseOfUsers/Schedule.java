@@ -30,4 +30,9 @@ public class Schedule {
         return false;
     }
 
+    public void assignVisit(Date date, int visitNmbr)
+    {
+        schedule.replace(date, visitNmbr);
+    }
+
 }
