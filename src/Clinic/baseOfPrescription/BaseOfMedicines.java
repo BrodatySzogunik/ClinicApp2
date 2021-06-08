@@ -1,43 +1,95 @@
 package Clinic.baseOfPrescription;
 
+import java.io.*;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class BaseOfMedicines {
-    static List<Medicine> medicines = Arrays.asList(
-            new Medicine("Hydroxyzinum", 6.95, Payment.FULL),
-            new Medicine("Efferalgan Codeine", 15.25, Payment.FULL),
-            new Medicine("Alpicort E", 54.79, Payment.FULL),
-            new Medicine("Talvosilen", 11.29, Payment.FULL),
-            new Medicine("Floxal", 54.79, Payment.FULL),
-            new Medicine("Telfast", 23.59, Payment.FULL),
-            new Medicine("Vitaminum E ", 6.79, Payment.FULL),
-            new Medicine("Izotek", 58.29, Payment.FULL),
-            new Medicine("Citaxin", 14.59, Payment.FULL),
-            new Medicine("Abasaglar", 91.78, Payment.HALF),
-            new Medicine("Abilify", 9.02, Payment.HALF),
-            new Medicine("Acenocumarol", 9.99, Payment.HALF),
-            new Medicine("Dorzolamid", 6.72, Payment.HALF),
-            new Medicine("Doreta", 8.99, Payment.HALF),
-            new Medicine("Glimepiride Aurovitas", 3.26, Payment.HALF),
-            new Medicine("Ketipinor", 79.14, Payment.HALF),
-            new Medicine("Mycofit", 77.47, Payment.HALF),
-            new Medicine("Mozarin", 35.99, Payment.HALF),
-            new Medicine("Monural", 14.99, Payment.HALF),
-            new Medicine("Romilast", 9.95, Payment.HALF),
-            new Medicine("Vicebrol", 17.49, Payment.HALF),
-            new Medicine("Abasaglar", 0.0, Payment.FREE),
-            new Medicine("Fostex", 0.0, Payment.FREE),
-            new Medicine("Micardis", 0.0, Payment.FREE),
-            new Medicine("Rolpryna SR", 0.0, Payment.FREE),
-            new Medicine("Parogen", 0.0, Payment.FREE),
-            new Medicine("Humalog", 0.0, Payment.FREE),
-            new Medicine("Oftidorix", 0.0, Payment.FREE),
-            new Medicine("Simvasterol", 0.0, Payment.FREE),
-            new Medicine("Xalatan", 0.0, Payment.FREE),
-            new Medicine("Teveten", 0.0, Payment.FREE),
-            new Medicine("Stimuloton", 0.0, Payment.FREE)
-    );
+
+    static ArrayList<Medicine> medicines=new ArrayList<>();
+    public static void saveMedicinesToFile()
+    {
+        String path = "medicines.txt";
+        DataOutputStream outputStream= null;
+        try{
+            try{
+                outputStream=new DataOutputStream(new FileOutputStream(path));
+            }catch (FileNotFoundException e){
+                System.out.println("nie znaleziono pliku z lekami");
+                e.printStackTrace();
+                return;
+            }
+            try {
+                outputStream.writeInt(medicines.size());
+                for (Medicine med:medicines)
+                {
+                    outputStream.writeChar('m');
+                    outputStream.writeInt(med.payment.name().length());
+                    outputStream.writeChars(med.payment.name());
+                    outputStream.writeInt(med.medicineName.length());
+                    outputStream.writeChars(med.medicineName);
+                    outputStream.writeDouble(med.price);
+                }
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }finally {
+            if(outputStream!=null)
+            {
+                try {
+                    outputStream.close();
+                }catch (IOException e){}
+            }
+        }
+    }
+
+    public static void loadMedicinesFromFile()
+    {
+        int tmp, size;
+        char[] payment1;
+        Payment payment;
+        char[] name;
+        double price;
+        String path = "medicines.txt";
+        DataInputStream inputStream=null;
+        try {
+            try {
+                inputStream = new DataInputStream(new FileInputStream(path));
+            } catch (FileNotFoundException e) {
+                System.out.println("nie znaleziono pliku z lekami");
+                return;
+            }
+            try {
+                size=inputStream.readInt();
+                for (int i =0; i<size&&inputStream.readChar()=='m';i++)
+                {
+                    tmp=inputStream.readInt();
+                    payment1=new char[tmp];
+                    for(int x=0;x<tmp;x++)payment1[x]=inputStream.readChar();
+                    payment = Payment.valueOf(new String(payment1));
+                    tmp=inputStream.readInt();
+                    name=new char[tmp];
+                    for(int x=0;x<tmp;x++)name[x]=inputStream.readChar();
+                    price=inputStream.readDouble();
+                    medicines.add(new Medicine(new String(name), price,payment));
+                }
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }finally {
+            if(inputStream!=null)
+            {
+                try {
+                    inputStream.close();
+                }catch(IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
 
 

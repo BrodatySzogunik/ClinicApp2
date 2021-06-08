@@ -5,28 +5,40 @@ import Clinic.baseOfUsers.*;
 import java.util.Date;
 
 public class Visit {
-    User patient;
+    int patientId;
     Date date;
     Spec typeOfVisit;
-    Doctor doctor;
+    int doctorId;
     int prescriptionNumber;
     int recommendationsNumber;
     int visitNumber;
 
     public Visit(User patient, Date date, Spec typeOfVisit, Doctor doctor, int prescriptionNumber, int recommendationsNumber, int visitNumber)
     {
-        this.patient=patient;
+        this.patientId=patient.phoneNumber;
         this.date=date;
         this.typeOfVisit=typeOfVisit;
-        this.doctor=doctor;
+        this.doctorId=doctor.phoneNumber;
         this.prescriptionNumber=prescriptionNumber;
         this.recommendationsNumber=recommendationsNumber;
         this.visitNumber=visitNumber;
     }
 
+    public Visit(int patientId, Date date, Spec typeOfVisit, int doctorId, int prescriptionNumber, int recommendationsNumber, int visitNumber)
+    {
+        this.patientId=patientId;
+        this.date=date;
+        this.typeOfVisit=typeOfVisit;
+        this.doctorId=doctorId;
+        this.prescriptionNumber=prescriptionNumber;
+        this.recommendationsNumber=recommendationsNumber;
+        this.visitNumber=visitNumber;
+    }
+
+
     public void selectPatient(User patient)
     {
-        this.patient=patient;
+        this.patientId=patient.phoneNumber;
     }
 
     public void chooseDate(Date date)
@@ -41,7 +53,7 @@ public class Visit {
 
     public void chooseDoctor(Doctor doc)
     {
-        this.doctor=doc;
+        this.doctorId=doc.phoneNumber;
     }
 
     public void modifyPrescriptionNumber(int newNumber)
