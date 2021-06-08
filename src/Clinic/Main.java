@@ -15,9 +15,12 @@ public class Main {
 
 
         LoginFrame app = new LoginFrame();
+//        Users.addReceptionist("aa","aa",72813,"aa","aa");
+//        Users.addPatient("aa","aa",72813,"aa","aa");
+//        Users.addAdmin("aa","aa",72813,"aa","aa");
         Users.loadListOfUsersFromFile();
         Visits.loadVisitsFromFile();
-        Recommendations.loadRecommendationsFromFile();
+//        Recommendations.loadRecommendationsFromFile();
         BaseOfMedicines.loadMedicinesFromFile();
         BaseOfPrescriptions.loadPrescriptionsFromFile();
         app.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -25,7 +28,7 @@ public class Main {
         System.out.println(Users.listUsers(Users.users.get("Patients")));
 //        BaseOfMedicines.loadMedicinesFromFile();
 //        BaseOfMedicines.saveMedicinesToFile();
-        Users.addAdmin("aa","aa",72813,"aa","aa");
+//        Users.addAdmin("aa","aa",72813,"aa","aa");
     }
 
 
