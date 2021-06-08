@@ -2,6 +2,7 @@ package Clinic.Frames;
 
 import Clinic.Login;
 import Clinic.baseOfUsers.*;
+import Clinic.baseOfVisits.DoctorFrame;
 
 
 import javax.swing.*;
