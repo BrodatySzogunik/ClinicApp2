@@ -13,7 +13,8 @@ public class VisitManagementSystem {
     {
         int prescriptionNumber = PrescriptionsManagementSystem.createEmptyPrescription();
         int recommendationsNumber=RecommendationsManagementSystem.createEmptyRecommendation();
-        Visits.addVisit(updateNewestKey(), patient, date, doctor.spec, doctor,prescriptionNumber,recommendationsNumber);
+        doctor.schedule.assignVisit(date, updateNewestKey());
+        Visits.addVisit(newestKey, patient, date, doctor.spec, doctor,prescriptionNumber,recommendationsNumber);
     }
 
     static void loadNewestKeyFromFile()
