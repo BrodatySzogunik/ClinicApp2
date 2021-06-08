@@ -23,22 +23,22 @@ public class DoctorFrame extends JFrame implements ActionListener {
 
 
         bShowMyVisits =new JButton("Pokaż zaplanowane wizyty");
-        bShowMyVisits.setBounds(20,20,150,20);
+        bShowMyVisits.setBounds(20,20,200,20);
         bShowMyVisits.addActionListener(this);
         add(bShowMyVisits);
 
         bSetSchedule= new JButton("Edytuj swój grafik");
-        bSetSchedule.setBounds(20,40,150,20);
+        bSetSchedule.setBounds(20,40,200,20);
         bSetSchedule.addActionListener(this);
         add(bSetSchedule);
 
         bAddNewPrescription =new JButton("Wystaw Receptę");
-        bAddNewPrescription.setBounds(20,60,150,20);
+        bAddNewPrescription.setBounds(20,60,200,20);
         bAddNewPrescription.addActionListener(this);
         add(bAddNewPrescription);
 
         bAddNewReferral = new JButton("Wystaw skierowanie");
-        bAddNewReferral.setBounds(20,80,150,20);
+        bAddNewReferral.setBounds(20,80,200,20);
         bAddNewReferral.addActionListener(this);
         add(bAddNewReferral);
 
