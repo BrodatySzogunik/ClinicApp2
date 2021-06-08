@@ -1,5 +1,6 @@
 package Clinic.Frames;
 
+import Clinic.baseOfUsers.Doctor;
 import Clinic.baseOfUsers.User;
 import Clinic.baseOfUsers.Users;
 
@@ -46,20 +47,41 @@ public class RemoveUserFrame extends JFrame implements ActionListener {
         if(source == cUserType){
             remove(cRemoveBox);
             cRemoveBox.removeAllItems();
-            if(Users.returnUsers((String)cUserType.getSelectedItem())!=null) {
-                for (User user : Users.returnUsers((String) cUserType.getSelectedItem())) {
+            if(!(cUserType.getSelectedItem().equals("Doctors"))){
+                if(Users.returnUsers((String)cUserType.getSelectedItem())!=null) {
+                    for (User user : Users.returnUsers((String) cUserType.getSelectedItem())) {
 
-                    cRemoveBox.addItem(user.firstName + " " + user.lastName + " " + user.phoneNumber);
+                        cRemoveBox.addItem(user.firstName + " " + user.lastName + " " + user.phoneNumber);
+                    }
+                }
+
+            }else{
+            remove(cRemoveBox);
+            cRemoveBox.removeAllItems();
+            if(Users.returnDoctors()!=null) {
+                for (Doctor doctor : Users.returnDoctors()) {
+                    cRemoveBox.addItem(doctor.firstName + " " + doctor.lastName + " " + doctor.phoneNumber);
                 }
             }
-                add(cRemoveBox);
-                this.repaint();
+
+
+            }
+            add(cRemoveBox);
+            this.repaint();
+
         }
-        if(source == bRemoveUser && !(Users.returnUsers((String)cUserType.getSelectedItem())==null)){
-            Users.removeUser((String)cUserType.getSelectedItem(),Users.returnUser(Users.returnUsers((String) cUserType.getSelectedItem()),cRemoveBox.getSelectedIndex()));
-            Users.saveListOfUsersToFile();
-            this.dispose();
-        }
+        if(cUserType.getSelectedItem().equals("Doctors")){
+            if(source == bRemoveUser && Users.returnDoctors()!=null){
+                Users.removeDoctor(Users.returnDoctor(cRemoveBox.getSelectedIndex()));
+                Users.saveListOfUsersToFile();
+                this.dispose();
+            }}else{
+            if(source == bRemoveUser && (Users.returnUsers((String)cUserType.getSelectedItem())!=null)){
+                Users.removeUser((String)cUserType.getSelectedItem(),Users.returnUser(Users.returnUsers((String) cUserType.getSelectedItem()),cRemoveBox.getSelectedIndex()));
+                Users.saveListOfUsersToFile();
+                this.dispose();
+            }}
 
     }
+
 }

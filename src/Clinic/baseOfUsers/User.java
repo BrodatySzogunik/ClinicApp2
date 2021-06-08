@@ -48,10 +48,7 @@ public class User {
 
     @Override
     public String toString(){
-        return  "imię:"+firstName+
-                "\nNazwisko:"+lastName+
-                "\nnr telefonu:"+phoneNumber+
-                "\nlogin:"+login+"\n";
+        return  firstName+""+lastName;
 
     }
 

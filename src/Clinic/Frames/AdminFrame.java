@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AdminFrame extends JFrame implements ActionListener {
-    JButton bAddNewAccount,bDeleteAccount,bModifyData;
+    JButton bAddNewAccount,bDeleteAccount;
 
     public AdminFrame(User admin){
 
@@ -26,11 +26,6 @@ public class AdminFrame extends JFrame implements ActionListener {
         bDeleteAccount.addActionListener(this);
         add(bDeleteAccount);
 
-        bModifyData =new JButton("Modyfikuj użytkownika");
-        bModifyData.setBounds(20,60,150,20);
-        bModifyData.addActionListener(this);
-        add(bModifyData);
-
     }
 
 
@@ -45,12 +40,10 @@ public class AdminFrame extends JFrame implements ActionListener {
             registerFrame.setVisible(true);
             registerFrame.add(registerFrame.lChoseUserType);
             registerFrame.add(registerFrame.cChoseUserType);
-        }else if(source == bDeleteAccount){
+        }else if(source == bDeleteAccount) {
             RemoveUserFrame removeUserFrame = new RemoveUserFrame();
             removeUserFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             removeUserFrame.setVisible(true);
-        }else if(source == bModifyData){
-
         }
 
     }

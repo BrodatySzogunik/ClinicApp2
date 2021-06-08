@@ -52,7 +52,6 @@ public class Login {
 
 
     public static User checkCredentials(ArrayList<User> users,String login,String password) {
-        //Users.loadListOfUsersFromFile();
             for (User user : users) {
                 if (login.equals(user.login)&&password.equals(user.password)) {
                     return user;

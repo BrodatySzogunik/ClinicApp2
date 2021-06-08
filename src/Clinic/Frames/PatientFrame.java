@@ -8,10 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PatientFrame extends JFrame implements ActionListener {
-    User user;
     JButton bAddVisit,bShowVisits,bChangePassword;
+    User user1;
     public PatientFrame(User user){
-        this.user = user;
+        this.user1 = user;
         setSize(500,500);
         setTitle("Zalogowany jako pacjent: "+user.firstName+" "+user.lastName);
         setLayout(null);
@@ -41,12 +41,12 @@ public class PatientFrame extends JFrame implements ActionListener {
         Object source = e.getSource();
         if(source == bAddVisit){
             ((JButton)source).setForeground(Color.RED);
-            VisitFrame visitFrame = new VisitFrame("addVisit");
+            VisitFrame visitFrame = new VisitFrame("addVisit",user1);
             visitFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             visitFrame.setVisible(true);
         }
         if(source == bChangePassword){
-            ChangePasswordFrame changePasswordFrame = new ChangePasswordFrame(user);
+            ChangePasswordFrame changePasswordFrame = new ChangePasswordFrame(user1);
             changePasswordFrame.setVisible(true);
         }
 

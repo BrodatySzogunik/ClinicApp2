@@ -28,10 +28,31 @@ public class Users {
     }
 
     public static ArrayList<User> returnUsers(String userType){
-        if(!users.get(userType).isEmpty())return users.get(userType);
+        if(users.get(userType)!=null) {
+            if (!users.get(userType).isEmpty()) return users.get(userType);
+            else return null;
+        }else return null;
+    }
+
+    public static ArrayList<Doctor> returnDoctors(){
+        if(!doctors.isEmpty())return doctors;
         else return null;
     }
 
+
+//    public static Doctor returnDoctor(int phoneNumber){
+//        for(Doctor doctor: doctors){
+//            if(doctor.phoneNumber==phoneNumber){
+//                return doctor;
+//            }
+//        }
+//        return null;
+//
+//    }
+
+    public static Doctor returnDoctor(int index){
+        return doctors.get(index);
+    }
 
 
     public static User returnUser(ArrayList<User> users,int phoneNumber,String firstName,String lastName){
@@ -58,6 +79,9 @@ public class Users {
        if(Users.returnUsers(userType).remove(user))return true;
         return false;
     }
+
+
+
 
     public static boolean removeDoctor(Doctor doc)
     {
@@ -101,7 +125,7 @@ public class Users {
     }
 
     public static void addReceptionist(String firstName, String lastName, int phoneNumber, String login, String password){
-        if(!(users.keySet().contains("Patients")))
+        if(!(users.keySet().contains("Receptionists")))
         {
             users.put("Receptionists",new ArrayList<>());
         }
