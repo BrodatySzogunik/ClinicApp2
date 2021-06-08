@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class DoctorFrame extends JFrame implements ActionListener {
 
-    JButton bShowMyVisits, bSetSchedule,bAddNewReco,bAddNewPrescription,bGetDetails,bAcceptReco;
+    JButton bShowMyVisits, bSetSchedule,bAddNewReco,bGetDetails,bAcceptReco;
     JComboBox cVisits,cVisits2;
     JTextField tReco;
 
@@ -52,10 +52,10 @@ public class DoctorFrame extends JFrame implements ActionListener {
         bSetSchedule.addActionListener(this);
         add(bSetSchedule);
 
-        bAddNewPrescription =new JButton("Wystaw Receptę");
-        bAddNewPrescription.setBounds(20,60,200,20);
-        bAddNewPrescription.addActionListener(this);
-        add(bAddNewPrescription);
+//        bAddNewPrescription =new JButton("Wystaw Receptę");
+//        bAddNewPrescription.setBounds(20,60,200,20);
+//        bAddNewPrescription.addActionListener(this);
+//        add(bAddNewPrescription);
 
         bAddNewReco = new JButton("Wystaw zalecenie");
         bAddNewReco.setBounds(20,100,140,20);

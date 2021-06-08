@@ -17,7 +17,7 @@ public class RemoveUserFrame extends JFrame implements ActionListener {
 
 
 
-        this.setTitle("Jebać Disa");
+        this.setTitle("Usuwanie użytkownika");
         this.setSize(500,500);
         this.setLayout(null);
 

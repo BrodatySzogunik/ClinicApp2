@@ -69,9 +69,7 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
 
                     }
                     date = sdf3.parse(tempDate);
-                    System.out.println(date);
                     dayOfWeek = getDayNumberOld(date);
-                    System.out.println(dayOfWeek);
                     if(dayOfWeek!=7&&dayOfWeek!=1) {
                         cChoseDays.addItem(tempDate);
                     }
@@ -139,7 +137,7 @@ public class SetScheduleFrame extends JFrame implements ActionListener {
         this.repaint();
 
         cShowSchedule.removeAllItems();
-        System.out.println((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
+//        System.out.println((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
         try{
         date = sdf1.parse((String)(cChoseDays.getSelectedItem())+" "+(String)(cChoseHours.getSelectedItem()));
         if(!doctor1.schedule.containsDate(date)){
