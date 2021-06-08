@@ -4,6 +4,7 @@ import Clinic.baseOfUsers.Spec;
 import Clinic.baseOfUsers.User;
 import Clinic.baseOfUsers.Users;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Register {
@@ -60,11 +61,12 @@ public class Register {
     }
 
     public static boolean registerReceptionist(String firstName, String lastName, int phoneNumber, String login, String password){
-        if(Users.users.keySet().contains("Receptionists")) {
-            for (User user : Users.users.get("Receptionists")) {
-                if (user.phoneNumber == phoneNumber || user.login.equals(login)) {
-                    return false;
-                }
+        if(!Users.users.keySet().contains("Receptionists")) {
+            Users.users.put("Receptionists",new ArrayList<>());
+        }
+        for (User user : Users.users.get("Receptionists")) {
+            if (user.phoneNumber == phoneNumber || user.login.equals(login)) {
+                return false;
             }
         }
         Users.addReceptionist(firstName, lastName, phoneNumber, login, password);

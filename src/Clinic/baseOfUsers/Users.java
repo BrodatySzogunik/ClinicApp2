@@ -211,7 +211,9 @@ public class Users {
 
                     }
                 }
-                if(inputStream.readChar()=='Y')
+
+                if(inputStream.readChar()=='R')
+                inputStream.readChar();
                 {
                     if(!users.containsKey("Receptionists"))
                     {
