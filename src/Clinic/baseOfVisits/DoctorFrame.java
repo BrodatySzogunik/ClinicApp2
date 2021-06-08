@@ -1,6 +1,8 @@
 package Clinic.baseOfVisits;
 
 import Clinic.Frames.SetScheduleFrame;
+import Clinic.baseOfRecommendations.Recommendation;
+import Clinic.baseOfRecommendations.Recommendations;
 import Clinic.baseOfUsers.Doctor;
 import Clinic.baseOfUsers.User;
 import Clinic.baseOfUsers.Users;
@@ -14,8 +16,10 @@ import java.util.Map;
 
 public class DoctorFrame extends JFrame implements ActionListener {
 
-    JButton bShowMyVisits, bSetSchedule,bAddNewReferral,bAddNewPrescription,bGetDetails;
-    JComboBox cVisits;
+    JButton bShowMyVisits, bSetSchedule,bAddNewReco,bAddNewPrescription,bGetDetails,bAcceptReco;
+    JComboBox cVisits,cVisits2;
+    JTextField tReco;
+
     Doctor doctor1 ;
 
     public DoctorFrame(Doctor doctor){
@@ -53,10 +57,20 @@ public class DoctorFrame extends JFrame implements ActionListener {
         bAddNewPrescription.addActionListener(this);
         add(bAddNewPrescription);
 
-        bAddNewReferral = new JButton("Wystaw skierowanie");
-        bAddNewReferral.setBounds(20,80,200,20);
-        bAddNewReferral.addActionListener(this);
-        add(bAddNewReferral);
+        bAddNewReco = new JButton("Wystaw zalecenie");
+        bAddNewReco.setBounds(20,100,140,20);
+        bAddNewReco.addActionListener(this);
+        add(bAddNewReco);
+
+        cVisits2=new JComboBox();
+        cVisits2.setBounds(160,100,200,20);
+
+        bAcceptReco=new JButton("Akceptuj");
+        bAcceptReco.setBounds(360,100, 140,20);
+        bAcceptReco.addActionListener(this);
+
+        tReco=new JTextField("Zalecenia: ");
+        tReco.setBounds(20,120,360,20);
 
 
     }
@@ -98,7 +112,26 @@ public class DoctorFrame extends JFrame implements ActionListener {
                 visitDetailsFrame.setVisible(true);
             }
         }
-        this.repaint();
 
+        if(source==bAddNewReco)
+        {
+            cVisits2.removeAllItems();
+            for(Map.Entry<Integer,Visit> entry:Visits.visits.entrySet())
+            {
+                if(doctor1.phoneNumber==entry.getValue().doctorId)cVisits2.addItem(entry.getValue());
+            }
+            add(cVisits2);
+            add(tReco);
+            add(bAcceptReco);
+        }
+        if(source==bAcceptReco)
+        {
+            String txt=tReco.getText();
+            Visit visit=(Visit)cVisits2.getSelectedItem();
+            Recommendations.modifyReco(visit.recommendationsNumber,txt,visit.date,visit.patientId);
+            Recommendations.saveRecommendationsToFile();
+        }
+
+        this.repaint();
     }
 }
