@@ -4,12 +4,12 @@ import Clinic.Frames.SetScheduleFrame;
 import Clinic.baseOfUsers.Doctor;
 import Clinic.baseOfUsers.User;
 import Clinic.baseOfUsers.Users;
-import Clinic.baseOfVisits.Visit;
+
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 public class DoctorFrame extends JFrame implements ActionListener {
@@ -17,6 +17,7 @@ public class DoctorFrame extends JFrame implements ActionListener {
     JButton bShowMyVisits, bSetSchedule,bAddNewReferral,bAddNewPrescription,bGetDetails;
     JComboBox cVisits;
     Doctor doctor1 ;
+
     public DoctorFrame(Doctor doctor){
         doctor1=doctor;
 
@@ -34,10 +35,10 @@ public class DoctorFrame extends JFrame implements ActionListener {
         add(bShowMyVisits);
 
         cVisits=new JComboBox();
-        cVisits.setBounds(220,20,120,20);
+        cVisits.setBounds(220,20,270,20);
 
         bGetDetails=new JButton("Szczegoly wizyty");
-        bGetDetails.setBounds(340,20,150,20);
+        bGetDetails.setBounds(340,40,150,20);
         bGetDetails.addActionListener(this);
 
 
@@ -73,7 +74,12 @@ public class DoctorFrame extends JFrame implements ActionListener {
             cVisits.removeAllItems();
             for(Map.Entry<Integer,Visit> entry:Visits.visits.entrySet())
             {
-                if(doctor1.phoneNumber==entry.getValue().doctorId)cVisits.addItem(entry.getValue());
+
+                if(doctor1.phoneNumber==entry.getValue().doctorId&&Users.returnUserByPhoneNumber("Patients",entry.getValue().patientId)!=null){
+                    cVisits.addItem(entry.getValue());
+                }
+
+
             }
             add(cVisits);
             add(bGetDetails);

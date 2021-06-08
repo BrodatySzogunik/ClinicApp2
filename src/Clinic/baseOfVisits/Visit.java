@@ -2,6 +2,7 @@ package Clinic.baseOfVisits;
 
 import Clinic.baseOfUsers.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Visit {
@@ -12,6 +13,7 @@ public class Visit {
     int prescriptionNumber;
     int recommendationsNumber;
     int visitNumber;
+    SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
     public Visit(User patient, Date date, Spec typeOfVisit, Doctor doctor, int prescriptionNumber, int recommendationsNumber, int visitNumber)
     {
@@ -68,7 +70,7 @@ public class Visit {
 
     @Override
     public String toString(){
-        return  typeOfVisit.toString()+" "+date.toString();
+        return  sdf1.format(date)+" "+Users.returnUserByPhoneNumber("Patients",patientId);
 
     }
 }

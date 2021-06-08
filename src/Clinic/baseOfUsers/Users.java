@@ -8,7 +8,7 @@ import java.util.*;
 public class Users {
     public static Map<String,ArrayList<User>> users= new HashMap<>();
     public static ArrayList<Doctor> doctors= new ArrayList<Doctor>();
-    Scanner scanner=new Scanner(System.in);
+//    Scanner scanner=new Scanner(System.in);
 
 
 //    public  ArrayList<User> getDoctors() +{
@@ -39,6 +39,13 @@ public class Users {
         else return null;
     }
 
+    public static User returnUserByPhoneNumber(String userType,int phoneNumber){
+        for(User user: returnUsers(userType)){
+            if(user.phoneNumber==phoneNumber)return user;
+        }
+            return null;
+
+    }
 
 //    public static Doctor returnDoctor(int phoneNumber){
 //        for(Doctor doctor: doctors){
@@ -69,19 +76,16 @@ public class Users {
     }
 
 
-    public static boolean removeUser(String userType,int phoneNumber,String firstName,String lastName){
-        User user = Users.returnUser(Users.returnUsers(userType), phoneNumber, firstName, lastName);
-        if(Users.returnUsers(userType).remove(user))return true;
-        else return false;
-    }
+//    public static boolean removeUser(String userType,int phoneNumber,String firstName,String lastName){
+//        User user = Users.returnUser(Users.returnUsers(userType), phoneNumber, firstName, lastName);
+//        if(Users.returnUsers(userType).remove(user))return true;
+//        else return false;
+//    }
 
     public static boolean removeUser(String userType,User user){
        if(Users.returnUsers(userType).remove(user))return true;
         return false;
     }
-
-
-
 
     public static boolean removeDoctor(Doctor doc)
     {
@@ -90,17 +94,17 @@ public class Users {
     }
 
 
-    public static void  listAllUsers(){
-        System.out.println("Patients\n");
-        System.out.println(listUsers(users.get("Patients")));
-        System.out.println("Doctors\n");
-        System.out.println(listUsers(users.get("Doctors")));
-        System.out.println("Receptionists\n");
-        System.out.println(listUsers(users.get("Receptionist")));
-        System.out.println("Admins\n");
-        System.out.println(listUsers(users.get("Admins")));
-
-    }
+//    public static void  listAllUsers(){
+//        System.out.println("Patients\n");
+//        System.out.println(listUsers(users.get("Patients")));
+//        System.out.println("Doctors\n");
+//        System.out.println(listUsers(users.get("Doctors")));
+//        System.out.println("Receptionists\n");
+//        System.out.println(listUsers(users.get("Receptionist")));
+//        System.out.println("Admins\n");
+//        System.out.println(listUsers(users.get("Admins")));
+//
+//    }
 
     public static void addDoctor(String firstName, String lastName, int phoneNumber, String login, String password,Spec spec){
         doctors.add(new Doctor(firstName,lastName,phoneNumber,login,password,spec));
