@@ -1,10 +1,11 @@
-package Clinic.Frames;
+package Clinic.baseOfVisits;
 
 import Clinic.VisitManagementSystem;
 import Clinic.baseOfUsers.Doctor;
 import Clinic.baseOfUsers.Spec;
 import Clinic.baseOfUsers.User;
 import Clinic.baseOfUsers.Users;
+import Clinic.baseOfVisits.Visit;
 import Clinic.baseOfVisits.Visits;
 
 import javax.swing.*;
@@ -18,8 +19,10 @@ import java.util.Map;
 
 public class VisitFrame extends JFrame implements ActionListener {
 
-    JComboBox cChoseVisit,cChoseSpecialist,cChoseDoctor;
-    JButton bAccept;
+    JComboBox cChoseVisit,cChoseSpecialist,cChoseDoctor,cShowVisits;
+
+    JButton bAccept,bRemoveVisit;
+
 
     SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
     User user1;
@@ -55,6 +58,30 @@ public class VisitFrame extends JFrame implements ActionListener {
 
 
     }
+
+       if(type.equals("showVisits")){
+
+           cShowVisits =new JComboBox();
+           cShowVisits.setBounds(20,20,200,20);
+           cShowVisits.addActionListener(this);
+
+           bRemoveVisit =new JButton("Odwołaj wizytę");
+           bRemoveVisit.setBounds(20,20,200,20);
+           bRemoveVisit.addActionListener(this);
+           add(bRemoveVisit);
+
+
+
+           for(Map.Entry<Integer, Visit>visitsEntry:Visits.visits.entrySet()){
+               cShowVisits.addItem(visitsEntry.getValue().typeOfVisit+" "+visitsEntry.getValue().date);
+           }
+           add(cShowVisits);
+
+
+
+       }
+
+
 
 
 

@@ -1,6 +1,7 @@
 package Clinic.Frames;
 
 import Clinic.baseOfUsers.User;
+import Clinic.baseOfVisits.VisitFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,6 +49,11 @@ public class PatientFrame extends JFrame implements ActionListener {
         if(source == bChangePassword){
             ChangePasswordFrame changePasswordFrame = new ChangePasswordFrame(user1);
             changePasswordFrame.setVisible(true);
+        }
+        if(source==bShowVisits){
+            VisitFrame visitFrame = new VisitFrame("showVisits",user1);
+            visitFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            visitFrame.setVisible(true);
         }
 
 
