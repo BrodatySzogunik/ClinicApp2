@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 public class PatientFrame extends JFrame implements ActionListener {
     JButton bAddVisit,bShowVisits,bChangePassword;
     User user1;
+
     public PatientFrame(User user){
         this.user1 = user;
         setSize(500,500);
