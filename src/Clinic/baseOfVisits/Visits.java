@@ -5,6 +5,7 @@ import Clinic.baseOfUsers.Spec;
 import Clinic.baseOfUsers.User;
 
 import java.io.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -52,15 +53,7 @@ public class Visits {
                     outputStream.writeChar('v');
                     outputStream.writeInt(entry.getKey());
                     outputStream.writeChar('p');
-                    outputStream.writeInt(entry.getValue().patient.firstName.length());
-                    outputStream.writeChars(entry.getValue().patient.firstName);
-                    outputStream.writeInt(entry.getValue().patient.lastName.length());
-                    outputStream.writeChars(entry.getValue().patient.lastName);
-                    outputStream.writeInt(entry.getValue().patient.phoneNumber);
-                    outputStream.writeInt(entry.getValue().patient.login.length());
-                    outputStream.writeChars(entry.getValue().patient.login);
-                    outputStream.writeInt(entry.getValue().patient.password.length());
-                    outputStream.writeChars(entry.getValue().patient.password);
+                    outputStream.writeInt(entry.getValue().patientId);
                     outputStream.writeChar('d');
                     tmpDateStr=sdf.format(entry.getValue().date);
                     outputStream.writeInt(tmpDateStr.length());
@@ -69,28 +62,7 @@ public class Visits {
                     outputStream.writeInt(entry.getValue().typeOfVisit.name().length());
                     outputStream.writeChars(entry.getValue().typeOfVisit.name());
                     outputStream.writeChar('d');
-                    outputStream.writeInt(entry.getValue().doctor.firstName.length());
-                    outputStream.writeChars(entry.getValue().doctor.firstName);
-                    outputStream.writeInt(entry.getValue().doctor.lastName.length());
-                    outputStream.writeChars(entry.getValue().doctor.lastName);
-                    outputStream.writeInt(entry.getValue().doctor.phoneNumber);
-                    outputStream.writeInt(entry.getValue().doctor.login.length());
-                    outputStream.writeChars(entry.getValue().doctor.login);
-                    outputStream.writeInt(entry.getValue().doctor.password.length());
-                    outputStream.writeChars(entry.getValue().doctor.password);
-                    outputStream.writeInt(entry.getValue().doctor.spec.name().length());
-                    outputStream.writeChars(entry.getValue().doctor.spec.name());
-
-                    outputStream.writeInt(entry.getValue().doctor.schedule.returnSchedule().size());
-                    for(Map.Entry<Date, Integer> entry2:entry.getValue().doctor.schedule.returnSchedule().entrySet())
-                    {
-                        outputStream.writeChar('S');
-                        tmpDateStr=sdf.format(entry2.getKey());
-                        outputStream.writeInt(tmpDateStr.length());
-                        outputStream.writeChars(tmpDateStr);
-                        outputStream.writeInt(entry2.getValue());
-                    }
-
+                    outputStream.writeInt(entry.getValue().doctorId);
                     outputStream.writeChar('i');
                     outputStream.writeInt(entry.getValue().prescriptionNumber);
                     outputStream.writeInt(entry.getValue().recommendationsNumber);
@@ -114,14 +86,17 @@ public class Visits {
 
     public static void loadVisitsFromFile()
     {
-        int size1,size2,key;
+        int size1,size2,key,tmp;
         int prescriptionNumber;
         int recommendationsNumber;
         int visitNumber;
-        User patient;
-        Date date;
+        int patientId;
+        Date date=null;
         Spec typeOfVisit;
-        Doctor doctor;
+        int doctorId;
+        char[] tmpDate,tmpSpec;
+        char[] spec;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH/mm");
         String path = "visits.txt";
         DataInputStream inputStream= null;
         try {
@@ -136,6 +111,41 @@ public class Visits {
                 for(int i=0;i<size1&&inputStream.readChar()=='v';i++)
                 {
                     key=inputStream.readInt();
+
+                    inputStream.readChar();
+
+                    patientId=inputStream.readInt();
+
+                    inputStream.readChar();
+
+                    tmp=inputStream.readInt();
+                    tmpDate=new char[tmp];
+                    for (int x = 0; x < tmp; x++)tmpDate[x]=inputStream.readChar();
+                    try{
+                        date=sdf.parse(new String(tmpDate));
+                    }catch (ParseException e){
+                        e.printStackTrace();
+                    }
+
+                    inputStream.readChar();
+
+                    tmp=inputStream.readInt();
+                    tmpSpec=new char[tmp];
+                    for (int x = 0; x < tmp; x++)tmpSpec[x]=inputStream.readChar();
+                    typeOfVisit=Spec.valueOf(new String(tmpSpec));
+
+                    inputStream.readChar();
+
+                    doctorId=inputStream.readInt();
+
+                    inputStream.readChar();
+
+                    prescriptionNumber=inputStream.readInt();
+                    recommendationsNumber=inputStream.readInt();
+                    visitNumber=inputStream.readInt();
+                    visits.put(key,new Visit(patientId,date,typeOfVisit,doctorId,prescriptionNumber,recommendationsNumber,visitNumber));
+
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
