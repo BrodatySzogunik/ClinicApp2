@@ -86,7 +86,7 @@ public class Visits {
 
     public static void loadVisitsFromFile()
     {
-        int size1,size2,key,tmp;
+        int size1,key,tmp;
         int prescriptionNumber;
         int recommendationsNumber;
         int visitNumber;
@@ -95,7 +95,6 @@ public class Visits {
         Spec typeOfVisit;
         int doctorId;
         char[] tmpDate,tmpSpec;
-        char[] spec;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH/mm");
         String path = "visits.txt";
         DataInputStream inputStream= null;
