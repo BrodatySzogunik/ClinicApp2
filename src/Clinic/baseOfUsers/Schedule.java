@@ -35,4 +35,8 @@ public class Schedule {
         schedule.replace(date, visitNmbr);
     }
 
+    public void resignFromVisit(Date date)
+    {
+        schedule.replace(date, 0);
+    }
 }

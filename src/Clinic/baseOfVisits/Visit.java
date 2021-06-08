@@ -65,4 +65,10 @@ public class Visit {
     {
         this.recommendationsNumber=newNumber;
     }
+
+    @Override
+    public String toString(){
+        return  typeOfVisit.toString()+" "+date.toString();
+
+    }
 }

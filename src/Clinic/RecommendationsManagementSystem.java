@@ -15,6 +15,12 @@ public class RecommendationsManagementSystem {
         return newestKey;
     }
 
+    public static int createEmptyRecommendation(int patientId)
+    {
+        Recommendations.newRecommendation(updateNewestKey(),"",null,patientId);
+        return newestKey;
+    }
+
     public static int createRecommendation(String reco, Date date, int patientId)
     {
         Recommendations.newRecommendation(updateNewestKey(), reco,date,patientId);

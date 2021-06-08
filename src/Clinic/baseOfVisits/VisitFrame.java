@@ -1,6 +1,8 @@
 package Clinic.baseOfVisits;
 
 import Clinic.VisitManagementSystem;
+import Clinic.baseOfPrescription.BaseOfPrescriptions;
+import Clinic.baseOfRecommendations.Recommendations;
 import Clinic.baseOfUsers.Doctor;
 import Clinic.baseOfUsers.Spec;
 import Clinic.baseOfUsers.User;
@@ -21,7 +23,7 @@ public class VisitFrame extends JFrame implements ActionListener {
 
     JComboBox cChoseVisit,cChoseSpecialist,cChoseDoctor,cShowVisits;
 
-    JButton bAccept,bRemoveVisit;
+    JButton bAccept,bRemoveVisit,bViewVisitsDetail;
 
 
     SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -68,12 +70,18 @@ public class VisitFrame extends JFrame implements ActionListener {
            bRemoveVisit =new JButton("Odwołaj wizytę");
            bRemoveVisit.setBounds(20,40,200,20);
            bRemoveVisit.addActionListener(this);
+
+           bViewVisitsDetail=new JButton("wyświetl szczegóły wizyty");
+           bViewVisitsDetail.setBounds(220,40,200,20);
+           bViewVisitsDetail.addActionListener(this);
+
            add(bRemoveVisit);
+           add(bViewVisitsDetail);
 
 
 
            for(Map.Entry<Integer, Visit>visitsEntry:Visits.visits.entrySet()){
-               cShowVisits.addItem(visitsEntry.getValue().typeOfVisit+" "+visitsEntry.getValue().date);
+               if(user1.phoneNumber==visitsEntry.getValue().patientId) cShowVisits.addItem(visitsEntry.getValue());
            }
            add(cShowVisits);
 
@@ -89,6 +97,7 @@ public class VisitFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+       Doctor doc=null;
        Object source = e.getSource();
        if(source == cChoseSpecialist){
            add(cChoseDoctor);
@@ -122,6 +131,34 @@ public class VisitFrame extends JFrame implements ActionListener {
            this.dispose();
        }
        this.repaint();
+
+       if(source==bRemoveVisit){
+           for(Doctor doctor: Users.doctors){
+               if(doctor.phoneNumber==((Visit)cShowVisits.getSelectedItem()).doctorId)doc=doctor;
+           }
+           if(doc!=null)doc.schedule.resignFromVisit(((Visit)cShowVisits.getSelectedItem()).date);
+           Recommendations.removeRecommendation(((Visit)cShowVisits.getSelectedItem()).recommendationsNumber);
+           BaseOfPrescriptions.removePrescription(((Visit)cShowVisits.getSelectedItem()).prescriptionNumber);
+           Visits.removeVisit(((Visit) cShowVisits.getSelectedItem()).visitNumber);
+           cShowVisits.removeAllItems();
+           remove(cShowVisits);
+           for(Map.Entry<Integer, Visit>visitsEntry:Visits.visits.entrySet()){
+               if(user1.phoneNumber==visitsEntry.getValue().patientId) cShowVisits.addItem(visitsEntry.getValue());
+           }
+           Visits.saveVisitsToFile();
+           BaseOfPrescriptions.savePrescriptionsToFile();
+           Recommendations.saveRecommendationsToFile();
+
+           add(cShowVisits);
+       }
+
+       if(source==bViewVisitsDetail){
+           VisitDetailsFrame visitDetailsFrame=new VisitDetailsFrame(user1,(Visit)cShowVisits.getSelectedItem());
+           visitDetailsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+           visitDetailsFrame.setVisible(true);
+
+
+       }
     }
 
 }
