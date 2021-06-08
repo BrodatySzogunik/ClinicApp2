@@ -5,6 +5,7 @@ import Clinic.baseOfUsers.Doctor;
 import Clinic.baseOfUsers.Spec;
 import Clinic.baseOfUsers.User;
 import Clinic.baseOfUsers.Users;
+import Clinic.baseOfVisits.Visits;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -87,6 +88,7 @@ public class VisitFrame extends JFrame implements ActionListener {
        if(source == bAccept){
            try {
                VisitManagementSystem.setAppointment(user1,doctor,sdf1.parse((String)cChoseVisit.getSelectedItem()));
+               Visits.saveVisitsToFile();
            } catch (ParseException parseException) {
                parseException.printStackTrace();
            }
