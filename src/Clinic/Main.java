@@ -4,6 +4,7 @@ package Clinic;
 import Clinic.Frames.LoginFrame;
 import Clinic.baseOfPrescription.BaseOfMedicines;
 import Clinic.baseOfPrescription.BaseOfPrescriptions;
+import Clinic.baseOfRecommendations.Recommendations;
 import Clinic.baseOfUsers.*;
 import Clinic.baseOfVisits.Visits;
 
@@ -16,6 +17,9 @@ public class Main {
         LoginFrame app = new LoginFrame();
         Users.loadListOfUsersFromFile();
         Visits.loadVisitsFromFile();
+        Recommendations.loadRecommendationsFromFile();
+        BaseOfMedicines.loadMedicinesFromFile();
+        BaseOfPrescriptions.loadPrescriptionsFromFile();
         app.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         app.setVisible(true);
         System.out.println(Users.listUsers(Users.users.get("Patients")));

@@ -74,6 +74,17 @@ public class Recommendations {
         }
     }
 
+    public static void modifyReco(int key, String reco,Date date,int patientId)
+    {
+        Recommendation oldReco=recommendations.get(key);
+        if(oldReco==null) oldReco=new Recommendation(reco,date,patientId);
+        else{
+            oldReco.recommendations=reco;
+            oldReco.dateOfIssue=date;
+        }
+        recommendations.replace(key, oldReco);
+    }
+
     public static void saveRecommendationsToFile()
     {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH/mm");
