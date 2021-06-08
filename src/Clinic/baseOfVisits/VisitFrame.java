@@ -66,7 +66,7 @@ public class VisitFrame extends JFrame implements ActionListener {
            cShowVisits.addActionListener(this);
 
            bRemoveVisit =new JButton("Odwołaj wizytę");
-           bRemoveVisit.setBounds(20,20,200,20);
+           bRemoveVisit.setBounds(20,40,200,20);
            bRemoveVisit.addActionListener(this);
            add(bRemoveVisit);
 
